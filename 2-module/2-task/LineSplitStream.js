@@ -9,7 +9,7 @@ class LineSplitStream extends stream.Transform {
   }
 
   _transform(chunk, encoding, callback) {
-    const endOfLineIndex = chunk.indexOf(os.EOL);
+    const endOfLineIndex = chunk.toString().indexOf(os.EOL);
 
     if (endOfLineIndex === -1) {
       this.row += chunk.toString();
