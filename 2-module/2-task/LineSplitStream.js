@@ -10,6 +10,7 @@ class LineSplitStream extends stream.Transform {
 
   _transform(chunk, encoding, callback) {
     chunk = chunk.toString();
+
     const endOfLineIndex = chunk.indexOf(os.EOL);
 
     if (endOfLineIndex === -1) {
