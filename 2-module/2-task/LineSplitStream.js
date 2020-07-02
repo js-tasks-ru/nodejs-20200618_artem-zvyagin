@@ -9,23 +9,24 @@ class LineSplitStream extends stream.Transform {
   }
 
   _transform(chunk, encoding, callback) {
-    const endOfLineIndex = chunk.toString().indexOf(os.EOL);
+    chunk = chunk.toString();
+    const endOfLineIndex = chunk.indexOf(os.EOL);
 
     if (endOfLineIndex === -1) {
-      this.row += chunk.toString();
+      this.row += chunk;
 
       callback(null);
     } else {
-      const row = this.row + chunk.toString().slice(0, endOfLineIndex);
+      const row = this.row + chunk.slice(0, endOfLineIndex);
 
-      this.row = chunk.toString().slice(endOfLineIndex + 2);
+      this.row = chunk.slice(endOfLineIndex + 2);
 
       callback(null, row);
     }
   }
 
   _flush(callback) {
-    callback(null, this.row.toString());
+    callback(null, this.row);
   }
 }
 
