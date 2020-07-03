@@ -20,7 +20,7 @@ class LineSplitStream extends stream.Transform {
     } else {
       const row = this.row + chunk.slice(0, endOfLineIndex);
 
-      this.row = chunk.slice(endOfLineIndex + 2);
+      this.row = chunk.slice(endOfLineIndex + 1);
 
       callback(null, row);
     }
